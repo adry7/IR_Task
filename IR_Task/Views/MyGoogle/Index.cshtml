@@ -1,0 +1,123 @@
+﻿@model  List<IR_Task.Models.SearchViewModel>
+@{
+    ViewBag.Title = "MyGoogle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>MyGoogle</h2>
+
+@using (Html.BeginForm("Search", "MyGoogle", FormMethod.Post))
+{
+
+
+        <input type="text" name="SearchTxt" value="" />
+        <input type="submit" value="Search" />
+
+
+        <div >
+            Phonetic : <input type="radio" name="SearchType" value="Phonetic" list="s" /> &emsp;
+            Bigram : <input type="radio" name="SearchType" value="Bigram" list="s" />
+        </div>
+        <hr />
+        
+}
+
+<h4> Result Count  : @ViewBag.ResCount    &emsp;   SearchText : @ViewBag.SearchTxt </h4>
+<div class="Content row" style="width:auto">
+    <div class="col-lg-9">
+        <br />
+        @foreach (var item in Model)
+        {
+
+            string link = item.Url;
+            @:<a href="@link" target="_blank">@item.MinUrl</a>
+            <br />
+            <p dir="ltr" style="width:60%;color:grey;text-wrap:inherit" id="@item.FullContent" class="minContent" onclick="OpenModal(id) ">
+                @item.MinContent
+            </p>
+            <br />
+        }
+    </div>
+
+    <div class="t">
+        <h3>List Of Correction</h3>
+        @foreach(var item in ViewBag.soundex)
+        {
+            <p >Instead of :<span style="font-weight:bold;font-size:large; color:brown">@item.Key</span></p>
+            for (int i = 0; i < item.Value.Count; i++)
+            {
+                <p>@item.Value[i]</p>
+            }
+
+        }
+
+
+        @foreach (var item in ViewBag.Bigram)
+        {
+            <p>Instead of :<span style="font-weight:bold;font-size:large; color:brown">@item.Term</span></p>
+            for (int i = 0; i < item.TopTerms.Count; i++)
+            {
+                <p>@item.TopTerms[i]</p>
+            }
+        }
+    </div>
+
+</div>
+
+
+
+<div id="myModal" class="modal closeModal" onclick="closeModal()">
+
+    <!-- Modal content -->
+    <div id="modal-content">
+    </div>
+
+</div>
+
+<style>
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    #modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+
+    .minContent:hover{
+        background-color : gainsboro;
+    }
+    .t{
+        float:right;
+    }
+        
+    
+</style>
+<script>
+     function OpenModal(id) {
+         var modal = document.getElementById('myModal');
+         var myCon = document.getElementById('modal-content');        
+         modal.style.display = "block";
+         myCon.innerText = id;
+    }
+
+     function closeModal() {
+         var modal = document.getElementById('myModal');
+         modal.style.display = "none";
+     }
+
+</script>

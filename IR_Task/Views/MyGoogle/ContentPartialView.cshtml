@@ -1,0 +1,26 @@
+﻿@model  List<IR_Task.Models.SearchModelView>
+
+
+<div class="Content" style="width:auto">
+
+    <br />
+    @foreach (var item in Model)
+    {
+
+        string link = item.Url;
+        @:<a href="@link">@item.MinUrl</a>
+
+
+        <br />
+        <p dir="ltr" style="width:50%;color:grey;text-wrap:inherit" id="@item.FullContent" class="minContent" onclick="OpenModal(id) ">
+            @item.MinContent
+        </p>
+        <br />
+
+    }
+
+
+
+
+</div>
+

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c15fa18b7543466f84524653324ebceb" Name="Diagram1">
+        <EntityTypeShape EntityType="IRdbModel.AllPage" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IRdbModel.bigram_index" Width="1.5" PointX="4.25" PointY="0.875" />
+        <EntityTypeShape EntityType="IRdbModel.inverted_index" Width="1.5" PointX="2.375" PointY="0.75" />
+        <EntityTypeShape EntityType="IRdbModel.soundex_index" Width="1.5" PointX="6" PointY="0.875" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
